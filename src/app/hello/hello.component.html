@@ -1,0 +1,96 @@
+<p>hello works ! {{courseName}}</p>
+<p (click)="changeName()">Click here to change</p>
+<h3> PIPES </h3>
+<h3> {{ title | titlecase}} </h3>
+<table style="text-align:left" border="01">
+    <tr>
+        <th> Product Code </th>
+        <td> {{ productCode | lowercase }} </td>
+    </tr>
+    <tr>
+        <th> Product Name </th>
+        <td> {{ productName | uppercase }} </td>
+    </tr>
+</table>
+
+<h3> {{ title | titlecase}} </h3>
+<table style="text-align:left" border="01">
+    <tr>
+        <th> Product Code </th>
+        <td> {{ productCode | slice:5:9 }} </td>
+    </tr>
+    <tr>
+        <th> Product Name </th>
+        <td> {{ productName | uppercase }} </td>
+    </tr>
+    <tr>
+        <th> Product Price </th>
+        <td> {{ productPrice | currency: 'INR':'symbol':'':'en-IN' }} </td>
+    </tr>
+    <tr>
+        <th> Purchase Date </th>
+        <td> {{ purchaseDate | date:'fullDate' | lowercase}} </td>
+    </tr>
+    <tr>
+        <th> Product Tax </th>
+        <td> {{ productTax | percent : '.2' }} </td>
+    </tr>
+    <tr>
+        <th> Product Rating </th>
+        <td>{{ productRating | number:'1.3-5'}} </td>
+    </tr>
+</table>
+
+
+<h3> Product Details in JSON Format </h3>
+{{ product | json }}
+
+
+<h3> Products Ratings i18nPlural Pipe</h3>
+<table border=1>
+    <thead>
+        <tr>
+            <th> Product Id</th>
+            <th> Product Rating & Feedback</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let rating of productRatings; index as i">
+            <td align="center"> {{ i+1 }}</td>
+            <td align="center"> {{ rating | i18nPlural:productMapping }} </td>
+        </tr>
+    </tbody>
+</table>
+<h2> Wish in Different Languages </h2>
+Enter your Name <input type=text #name><br/><br/> Select language to display
+<select #language (change)="message = language.value">
+        <option value="en">English</option>
+        <option value="fr">French</option>
+        <option value="es">Spanish</option>
+        <option value="de">German</option>
+      </select><br/><br/>
+<h3 *ngIf="message"> {{ message | i18nSelect:messageMap }}, {{ name.value }} </h3>
+
+
+<h2> Sorting Products list using custom pipe </h2>
+Sort the list based on
+<select [(ngModel)]="sortoption">
+        <option value="prodName">Product Name</option>
+        <option value="price">Price</option>        
+      </select><br/><br/>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let products of productsList | sort:sortoption">
+            <td>{{products.productName}}</td>
+            <td>{{products.price}}</td>
+        </tr>
+    </tbody>
+</table>
+
+

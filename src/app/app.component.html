@@ -1,0 +1,132 @@
+<div *ngIf="!submitted">
+  <form>
+    <label>User Name</label>
+    <input type="text" #username><br/><br/>
+    <label for="password">Password</label>
+    <input type="password" name="password" #password><br/>
+  </form>
+  <button (click)="onSubmit(username.value,password.value)">Login</button>
+</div>
+<div *ngIf="submitted">
+  <div *ngIf="isAuthenticated">
+    <h4> Welcome {{userName}} </h4>
+  </div>
+  <div *ngIf="!isAuthenticated">
+    <h4> Invalid Login !!! Please try again...</h4>
+  </div>
+  <button type="button" (click)="submitted=false">Back</button>
+</div>
+<ul>
+  <li *ngFor="let course of courses;  let i = index"> 
+       {{i}} - {{ course.name }} 
+  </li>
+</ul>
+
+<h4>
+  Current choice is {{ value }}
+</h4>
+<div [ngSwitch]="value">
+  <p *ngSwitchCase="1">First Choice</p>
+  <p *ngSwitchCase="2">Second Choice</p>
+  <p *ngSwitchCase="3">Third Choice</p>
+  <p *ngSwitchCase="2">Second Choice Again</p>
+  <p *ngSwitchDefault>Default Choice</p>
+</div>
+<div>
+  <button (click)="nextChoice()">
+                Next Choice
+        </button>
+</div>
+
+<h3>Structural Directive</h3>
+<p *appRepeat="5">I am being repeated...</p>
+
+<h3>Structural Directive with exportAs property</h3>
+<ng-template appRepeat #rd="repeat" #ct="changeText">
+    <p id="k">I am being repeated...</p>
+</ng-template>
+<button (click)="rd.repeatElement(10)">Repeat Element</button>
+<button (click)="ct.changeElementText(5)">Change Text</button>
+
+<div [style.background-color]="colorName" [style.color]="color">
+  Uses fixed yellow background
+</div>
+
+
+<div [class.bordered]="isBordered">
+  Border {{ isBordered ? "ON" : "OFF" }}
+</div>
+
+<p [ngStyle]="{
+                color:colorName1,
+                'font-weight':fontWeight,
+                borderBottom: borderStyle
+            }">
+  Demo for attribute directive ngStyle
+</p>
+
+
+<h3>Attribute Directive</h3>
+<p [appMessage]="myMessage">Click Here</p>
+<h3>Attribute Binding</h3>
+<img [src]='imgUrl' width=200 height=100>
+
+<table border=1>
+    <tr>
+        <td [attr.colspan]="value1"> First </td>
+        <td>Second</td>
+    </tr>
+    <tr>
+         <td>Third</td>
+          <td>Fourth</td>
+           <td>Fifth</td>
+    </tr>
+</table>
+<h3>Style Binding</h3>
+<button [style.color] = "isValid ? 'blue' : 'red' ">Hello</button>
+
+
+<h3>Two way Binding</h3>
+<input type="text" [(ngModel)]="twoway"> <br/>
+<div>Hello , {{ twoway }}</div>
+
+<h3> Popular Courses  Nested Component </h3>
+<button (click)="show=true">View Courses list</button><br/><br/>
+<div *ngIf="show">
+    <app-course-list></app-course-list>
+</div>
+
+<h2> Popular Courses  Nested Component Export AS</h2>
+Select a course to view
+<select #course (change)="cl.changeCourse(course.value)">
+    <option value="Node JS">Node JS</option>
+    <option value="Typescript">Typescript</option>
+    <option value="Angular">Angular</option>
+    <option value="React JS">React JS</option>
+</select>
+<br/>
+<br/>
+<app-course-list #cl="courselist"></app-course-list>
+
+<h2> Courses List  Passing data from Child Component to Container Component</h2>
+<app-course-list (OnRegister)="courseReg($event)"></app-course-list>
+<br/><br/>
+<div *ngIf="message">{{message}}</div>
+<h3>Component styling</h3>
+<div class="highlight">
+  Container Component
+</div>
+<app-child></app-child>
+
+<h3>CSS Encapsulation with Angular /ViewEncapsulation eg</h3>
+<div class="cmp">
+    App Component
+    <app-first></app-first>
+    <app-second></app-second>
+</div>
+
+<div>  
+  <h1>I'm a container component</h1>
+  <input type="text" [(ngModel)]='data'> 
+  <app-child [title]='data'></app-child>
+</div>
