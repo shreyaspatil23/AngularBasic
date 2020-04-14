@@ -12,7 +12,11 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { ChildComponent } from './child/child.component';
 import { FirstComponent } from './first/first.component';
 import { SecondComponent } from './second/second.component';
-
+import { CourseFormComponent } from './course-form/course-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { EmailValidator } from './course-form/email.validator';
+import { BookComponent } from './book/book.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,12 +27,18 @@ import { SecondComponent } from './second/second.component';
     CourseListComponent,
     ChildComponent,
     FirstComponent,
-    SecondComponent
+    SecondComponent,
+    CourseFormComponent,
+    RegistrationFormComponent,
+    EmailValidator,
+    BookComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent,HelloComponent],
