@@ -17,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { EmailValidator } from './course-form/email.validator';
 import { BookComponent } from './book/book.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,

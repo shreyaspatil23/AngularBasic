@@ -1,6 +1,7 @@
 import { Component,ViewEncapsulation,OnInit,  DoCheck, AfterContentInit, AfterContentChecked,
     AfterViewInit, AfterViewChecked,
     OnDestroy  } from '@angular/core';
+    import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -88,5 +89,20 @@ imgUrl = 'assets/imgs/carousel1.jpg';
      ngOnDestroy() {
         console.log('Destroy');
     }
+
+    dataO: Observable<number>;
+  myArray: number[] = [];
+  errors: boolean;
+  finished: boolean;
+  fetchData() {
+    this.dataO = new Observable(observer => {
+      setTimeout(() => { observer.next(11); }, 1000),
+        setTimeout(() => { observer.next(22); }, 2000),
+        setTimeout(() => { observer.complete(); }, 3000);
+    });
+    const sub = this.dataO.subscribe((value) => this.myArray.push(value),
+      error => this.errors = true,
+      () => this.finished = true);
+  }
   
 }

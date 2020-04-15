@@ -134,5 +134,15 @@ Select a course to view
 <app-registration-form></app-registration-form>
 <h3>Angular Services</h3>
 <app-book></app-book>
+<h3>Rxjs Observables</h3>
+<b> Using Observables!</b>
+<h6 style="margin-bottom: 0">VALUES:</h6>
+<div *ngFor="let value of myArray"> {{ value }}</div>
+<div style="margin-bottom: 0">ERRORS: {{ errors }}</div>
+<div style="margin-bottom: 0">FINISHED: {{ finished }}</div>
+<button style="margin-top: 2rem;" (click)="fetchData()">Fetch Data</button>
+
+
+
 
 
